@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+.bg-myRed{
+  background-color: crimson;
+}
+
+.content{
+  
+  padding: 12px;
+  height: 3000px;
+}
+
+.coloring{
+  color: black;
+}
+.welcome-user{
+  text-align: right;
+}
+.login{
+  text-align: center;
+  
+  
+  /* Center vertically and horizontally */
+ position: absolute; 
+  top: 30%;
+  left: 20%;
+  
+  
+}
+.container{
+  margin: 25px;
+  width: 350px;
+  height: 200px;
+  
+  /* Setup */
+  position: relative;
+}
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
