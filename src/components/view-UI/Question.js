@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 
  function Question({username, optionOne, questionId }) {
 
+   console.log('questionId');
+    console.log(questionId);
+
   return <div>
   <div>
     <span> {username} asks:</span>
@@ -17,6 +20,7 @@ import {connect} from "react-redux";
     </div>
     </div>;
 }
+
 function mapStateToProps(state, { id }) {
     const user = state.users[state.questions[id].author];
     

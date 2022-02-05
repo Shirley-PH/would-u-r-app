@@ -30,6 +30,7 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
       const answerId = value;
   
       dispatch(saveQuestionAnswer({ authedUser, questionId, answerId }));
+      console.log('question ID ',questionId )
     };
   
     const optionOnePercent = () => {
@@ -125,12 +126,12 @@ function mapStateToProps(state, { id }) {
   }}
 
   const user = state.users[state.questions[id].author];
-  const authedUser = state.authedUser.userId;
+  const authUser = state.authUser.userId;
   const question = state.questions[id];
   console.log('user')
   console.log(user)
  console.log('authuser')
-  console.log(authedUser)
+  console.log(authUser)
   console.log('question')
    console.log(question)
   
@@ -140,13 +141,13 @@ function mapStateToProps(state, { id }) {
     avatarURL: user.avatarURL,
     optionOne: state.questions[id].optionOne.text,
     optionTwo: state.questions[id].optionTwo.text,
-    authedUser: state.authedUser.userId,
+    authedUser: state.authUser.userId,
     optionOneVotes: state.questions[id].optionOne.votes.length,
     optionTwoVotes: state.questions[id].optionTwo.votes.length,
     totalVotes:
       state.questions[id].optionOne.votes.length +
       state.questions[id].optionTwo.votes.length,
-    answerId: state.users[authedUser].answers[question.id],
+    answerId: state.users[authUser].answers[question.id],
   };
 }
 

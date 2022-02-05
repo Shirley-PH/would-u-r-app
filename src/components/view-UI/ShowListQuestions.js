@@ -5,6 +5,7 @@ import Question from './Question';
 
 //representa a PollTeaser
  function ShowListQuestions({answered, unanswered}) {
+
     const [isAnswered, setIsAnswered] = useState(false);
 
     const setToAnswered =() => {
@@ -59,14 +60,14 @@ import Question from './Question';
 }
 
 function mapStateToProps(state) {
-    const user = state.users[state.authedUser.userId];
-       
+    const user = state.users[state.authUser.userId];
+       console.log(user)
     const answered = [...Object.keys(user.answers)]
         .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
     const unanswered = [...Object.keys(state.questions)
         .filter(question => answered.indexOf(question) < 0)]
         .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
-
+      console.log(answered, ' ',unanswered)
     return {
         answered: answered,
         unanswered: unanswered,

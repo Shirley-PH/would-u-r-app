@@ -21,24 +21,24 @@ function App() {
       }, [dispatch]
       );
 
-  const authedUser = useSelector((state) => state.authedUser)
+  const authUser = useSelector((state) => state.authUser)
 
   return (
     <Router>
     <Switch>
     <Route exact path="/" render={() => <Login />} />
     <Route exact path="/add" 
-      render={() => (authedUser && authedUser.userId ? <CreateNewQuestion /> : <Login />) } />
+      render={() => (authUser && authUser.userId ? <CreateNewQuestion /> : <Login />) } />
     <Route exact path="/404" 
-    render ={() => (authedUser && authedUser.userId ? <NotFound /> : <Login />) } />
+    render ={() => (authUser && authUser.userId ? <NotFound /> : <Login />) } />
     <Route exact path="/leaderboard" 
-    render={() => (authedUser && authedUser.userId ? <LeaderBoard/> : <Login/>)} />
+    render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
 
     <Route
       exact path="/home/"
-      render={() => (authedUser && authedUser.userId ? <DashBoard /> : <Login />)}      />
+      render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}      />
 
-    { authedUser && authedUser.userId ?
+    { authUser && authUser.userId ?
       <Route path="/questions/id:" element={ <QuestionDetails />} />:
       <Route element={< Login/>} />
     }
@@ -46,8 +46,8 @@ function App() {
        path="/question/:id"
       render={({ match }) => {
         
-        return authedUser && authedUser.userId ? (
-          <QuestionDetails 
+        return authUser && authUser.userId ? (
+          <QuestionDetails
           id={match.params.id} />
         ) : (
           <Login />
@@ -87,10 +87,10 @@ function App() {
         */
 
 function mapStateToProps(state) {
-  const authedUser = state.autedhUser ? state.users[state.authedUser] : null;
+  const authUser = state.authUser ? state.users[state.authUser] : null;
   return {
-    authedUser,
-    isLoggedIn: !!authedUser,
+    authUser,
+    isLoggedIn: !!authUser,
   };
 }
 export default connect(mapStateToProps)(App);
