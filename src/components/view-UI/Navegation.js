@@ -15,10 +15,10 @@ export default function Navegation() {
   const handleLogOut = (event) => {
         event.preventDefault();
         setAuthed("");
-        history("/");
+        history.push("/");
       };
-      console.log('state.authUser', state.authUser)
-  if (!state.authUser.loggedIn) return (
+      console.log('state', state)
+  if (!state.authedUser.loggedIn) return (
     <Login/>
   )
   return (
@@ -37,12 +37,12 @@ export default function Navegation() {
                 <div>
                 <Nav >
               <Button className="item">
-                    {state.users[state.authUser.userId].avatarURL ? (
-                      <img src={state.users[state.authUser.userId].avatarURL} alt="" />
+                    {state.users[state.authedUser.userId].avatarURL ? (
+                      <img src={state.users[state.authedUser.userId].avatarURL} alt="" />
                     ) : (
                       <i className="user circle icon"></i>
                     )}
-                    Hi {state.users[state.authUser.userId].name}!
+                    Hi {state.users[state.authedUser.userId].name}!
                   </Button>
 
                   <Button className="item" onClick={handleLogOut}>

@@ -16,7 +16,7 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
   answerId,
   nomatchId,) {
 
-    const state= useSelector((state) => state);
+    const state = useSelector((state) => state);
     const [value, setValue]= React.useState("");
 
     const dispatch = useDispatch();
@@ -48,7 +48,7 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
     
   return <div>
       <Navegation />
-      <img  src={state.users[state.questions[questionId].author].avatarURL} alt=""/>
+       <img  src={state.users[state.questions[questionId].author].avatarURL} alt=""/>
       
       {!answerId ? (
         <form className="detail-form" onSubmit={answerQuestion}>
@@ -126,7 +126,7 @@ function mapStateToProps(state, { id }) {
   }}
 
   const user = state.users[state.questions[id].author];
-  const authUser = state.authUser.userId;
+  const authUser = state.authedUser.userId;
   const question = state.questions[id];
   console.log('user')
   console.log(user)
@@ -141,7 +141,7 @@ function mapStateToProps(state, { id }) {
     avatarURL: user.avatarURL,
     optionOne: state.questions[id].optionOne.text,
     optionTwo: state.questions[id].optionTwo.text,
-    authedUser: state.authUser.userId,
+    authedUser: state.authedUser.userId,
     optionOneVotes: state.questions[id].optionOne.votes.length,
     optionTwoVotes: state.questions[id].optionTwo.votes.length,
     totalVotes:

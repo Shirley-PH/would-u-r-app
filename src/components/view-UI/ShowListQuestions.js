@@ -60,7 +60,7 @@ import Question from './Question';
 }
 
 function mapStateToProps(state) {
-    const user = state.users[state.authUser.userId];
+    const user = state.users[state.authedUser.userId];
        console.log(user)
     const answered = [...Object.keys(user.answers)]
         .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);

@@ -21,8 +21,8 @@ function App() {
       }, [dispatch]
       );
 
-  const authUser = useSelector((state) => state.authUser)
-
+  const authUser = useSelector((state) => state.authedUser)
+      
   return (
     <Router>
     <Switch>
@@ -34,15 +34,11 @@ function App() {
     <Route exact path="/leaderboard" 
     render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
 
-    <Route
-      exact path="/home/"
-      render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}      />
+       
+    <Route render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />
+         
 
-    { authUser && authUser.userId ?
-      <Route path="/questions/id:" element={ <QuestionDetails />} />:
-      <Route element={< Login/>} />
-    }
-    <Route
+       <Route
        path="/question/:id"
       render={({ match }) => {
         
