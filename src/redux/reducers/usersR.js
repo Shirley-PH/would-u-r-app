@@ -1,6 +1,6 @@
 import { GET_USER, GET_ANSWER, GET_QUESTION } from "../constants";
 
-export default function usersR(state=[], action){
+export default function usersR(state={}, action){
     
     switch(action.type){
     case GET_USER :
@@ -9,13 +9,13 @@ export default function usersR(state=[], action){
             ...action.users
         }
     case GET_QUESTION:
-        const {question }= action;
         return {
             ...state,
-            [question.author]:{
-                ...state[question.author],
-               question: [...state[question.author].question, 
-               question.id] 
+            [action.question.author]:{
+                ...state[action.question.author],
+               questions:[
+                   ...state[action.question.author].questions, 
+               action.question.id] 
             },
         };
 

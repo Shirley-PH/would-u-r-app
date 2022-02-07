@@ -47,7 +47,7 @@ export default function Login() {
                             <option value="tylermcginnis">Tyler </option>
                             <option value="sarahedo">Sarah </option>
                             <option value="johndoe">John </option>
-                            <option value="analin">Ana </option>
+                            
                            
                             
                         </Form.Select>

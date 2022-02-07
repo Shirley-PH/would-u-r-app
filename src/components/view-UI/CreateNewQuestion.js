@@ -6,8 +6,9 @@ import Navegation from './Navegation';
 import {Redirect} from 'react-router-dom'
 
 //Igual a NEWPOLL
- function CreateNewQuestion(authedUser) {
+ function CreateNewQuestion({authedUser}) {
   
+   // console.log('this is authed.authed.userId', authedUser.authedUser.userId); 
   const [optionOneText, setOptionOneText] = React.useState("")
   const [optionTwoText, setOptionTwoText] = React.useState("")
   const [toHome, setHome]= React.useState(false)
@@ -25,7 +26,7 @@ import {Redirect} from 'react-router-dom'
   const addQuestion = (event) =>{
       event.preventDefault();
       
-      dispatch(saveQuestion(optionOneText, optionTwoText, authedUser.authedUser.userId))
+      dispatch(saveQuestion(optionOneText, optionTwoText, authedUser))
       
       setOptionOneText("")
       setOptionTwoText("")
@@ -62,8 +63,10 @@ import {Redirect} from 'react-router-dom'
 }
 
 function mapStateToProps(state) {
+    console.log('?que es el state en createNewQuestion: ', state); 
+
   return {
-      authedUser: state.authedUser
+      authedUser: state.authedUser.userId,
 
   }
 }

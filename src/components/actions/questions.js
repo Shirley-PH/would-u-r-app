@@ -22,5 +22,5 @@ export function getAnswer(username, questionId, answer){
         username,
         questionId,
         answer,
-    } 
+    };
 }

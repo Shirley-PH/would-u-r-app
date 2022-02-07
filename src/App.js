@@ -25,18 +25,19 @@ function App() {
       
   return (
     <Router>
-    <Switch>
-    <Route exact path="/" render={() => <Login />} />
-    <Route exact path="/add" 
+      <Switch>
+      {/* {!(authUser && authUser.userId)? 
+            <Route path="/" component={Login}/>: null
+          }*/}
+          <Route exact path="/" render={() => <Login />} />
+        <Route exact path="/add" 
       render={() => (authUser && authUser.userId ? <CreateNewQuestion /> : <Login />) } />
-    <Route exact path="/404" 
-    render ={() => (authUser && authUser.userId ? <NotFound /> : <Login />) } />
-    <Route exact path="/leaderboard" 
-    render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
+        <Route exact path="/404" 
+        render ={() => (authUser && authUser.userId ? <NotFound /> : <Login />) } />
+        <Route exact path="/leaderboard" 
+        render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
 
-       
-    <Route render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />
-         
+      <Route path="/home/" render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />         
 
        <Route
        path="/question/:id"

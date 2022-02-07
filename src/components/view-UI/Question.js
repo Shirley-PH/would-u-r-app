@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 
  function Question({username, optionOne, questionId }) {
 
-   console.log('questionId');
-    console.log(questionId);
+   /* console.log('questionId');
+    console.log(questionId); */
 
   return <div>
   <div>

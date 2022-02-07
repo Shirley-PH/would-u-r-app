@@ -8,12 +8,10 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 
-const store= createStore(rootReducer, middleware)
+const store=createStore(rootReducer, middleware)
 ReactDOM.render(
   <Provider store={store}>
-
           <App />
-    
   </Provider>,
   document.getElementById('root')
 );

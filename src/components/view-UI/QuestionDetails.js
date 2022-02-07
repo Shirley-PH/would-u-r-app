@@ -1,11 +1,11 @@
 import React from 'react';
-import {connect, useDispatch, useSelector} from "react-redux"
+import {connect, useDispatch} from "react-redux"
 import Navegation from './Navegation';
 import NotFound from './NotFound';
 import {saveQuestionAnswer} from "../../redux/utils/helper"
 
 
- function QuestionDetails( authedUser,
+ function QuestionDetails( {authedUser,
   username,
   optionOne,
   optionTwo,
@@ -14,12 +14,15 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
   optionTwoVotes,
   totalVotes,
   answerId,
-  nomatchId,) {
+  avatarURL,
+  nomatchId,
+  }
+  ) {
 
-    const state = useSelector((state) => state);
+  //    const state = useSelector((state) => state);
     const [value, setValue]= React.useState("");
 
-    const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
     const handleChange = (event) => {
       setValue(event.target.value);
@@ -48,71 +51,72 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
     
   return <div>
       <Navegation />
-       <img  src={state.users[state.questions[questionId].author].avatarURL} alt=""/>
+      <img  src={avatarURL} alt="avatarURL"/>  
       
-      {!answerId ? (
-        <form className="detail-form" onSubmit={answerQuestion}>
-          <h2> {username} asks...</h2>
-          <p>Would you rather... </p>
-          <input
-            name="answer"
-            type="radio"
-            id="optionOne"
-            value="optionOne"
-            onChange={handleChange}
-          />
-          <span> {optionOne}</span>
 
-          <input
-            name="answer"
-            type="radio"
-            id="optionTwo"
-            value="optionTwo"
-            onChange={handleChange}
-          />
-          <span> {optionTwo}</span>
+{!answerId ? (
+  <form className="detail-form" onSubmit={answerQuestion}>
+    <h2> {username} asks...</h2>
+    <p>Would you rather... </p>
+    <input
+      name="answer"
+      type="radio"
+      id="optionOne"
+      value="optionOne"
+      onChange={handleChange}
+    />
+    <span> {optionOne}</span>
 
-          <br />
-          <br />
-          <button className="btn" type="submit">
-            Submit{" "}
-          </button>
-        </form>
-      ) : (
+    <input
+      name="answer"
+      type="radio"
+      id="optionTwo"
+      value="optionTwo"
+      onChange={handleChange}
+    />
+    <span> {optionTwo}</span>
+
+    <br />
+    <br />
+    <button className="btn" type="submit">
+      Submit{" "}
+    </button>
+  </form>
+) : (
+  <div>
+    <h2> {username} asks...</h2>
+    <p>
+      Would you rather {optionOne} or {optionTwo} ?{" "}
+    </p>
+    <p>Results</p>
+
+    <h2> {optionOne}</h2>
+    <h2>
+      {"optionOne" === answerId && (
         <div>
-          <h2> {username} asks...</h2>
-          <p>
-            Would you rather {optionOne} or {optionTwo} ?{" "}
-          </p>
-          <p>Results</p>
-
-          <h2> {optionOne}</h2>
-          <h2>
-            {"optionOne" === answerId && (
-              <div>
-                <h1 style={{ color: "green" }}>This is Your vote!</h1>
-              </div>
-            )}
-            {optionOneVotes} out of {totalVotes} voted this
-          </h2>
-          <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
-          <br />
-          <br />
-          <br />
-          {"optionTwo" === answerId && (
-            <div>
-              <h1 style={{ color: "green" }}>This is Your vote!</h1>
-            </div>
-          )}
-          <h2> {optionTwo}</h2>
-          <h2>
-            {" "}
-            {optionTwoVotes} out of {totalVotes} voted this
-          </h2>
-          <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
+          <h1 style={{ color: "green" }}>This is Your vote!</h1>
         </div>
       )}
-  
+      {optionOneVotes} out of {totalVotes} voted this
+    </h2>
+    <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
+    <br />
+    <br />
+    <br />
+    {"optionTwo" === answerId && (
+      <div>
+        <h1 style={{ color: "green" }}>This is Your vote!</h1>
+      </div>
+    )}
+    <h2> {optionTwo}</h2>
+    <h2>
+      {" "}
+      {optionTwoVotes} out of {totalVotes} voted this
+    </h2>
+    <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
+  </div>
+)}
+     
   </div>;
 }
 
@@ -128,13 +132,21 @@ function mapStateToProps(state, { id }) {
   const user = state.users[state.questions[id].author];
   const authUser = state.authedUser.userId;
   const question = state.questions[id];
-  console.log('user')
-  console.log(user)
- console.log('authuser')
+   const answerIdd=  state.users[authUser].answers; 
+
+   console.log('answerIdd ')
+  console.log(answerIdd)
+  console.log('state ')
+  console.log(state)
+   console.log('user name')
+  console.log(user.name)
+  console.log('authUser')
   console.log(authUser)
   console.log('question')
-   console.log(question)
+  console.log(question)
+ console.log('este valor es user.avatar ', user.avatarURL); 
   
+
   return {
     username: user.name,
     questionId: id,
@@ -148,7 +160,10 @@ function mapStateToProps(state, { id }) {
       state.questions[id].optionOne.votes.length +
       state.questions[id].optionTwo.votes.length,
     answerId: state.users[authUser].answers[question.id],
+  
   };
 }
 
 export default connect(mapStateToProps)(QuestionDetails);
+
+
