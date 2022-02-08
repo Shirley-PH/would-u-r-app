@@ -3,7 +3,8 @@ import {connect, useDispatch} from "react-redux"
 import Navegation from './Navegation';
 import NotFound from './NotFound';
 import {saveQuestionAnswer} from "../../redux/utils/helper"
-
+import '../../App.css'; 
+import {Form, Button} from 'react-bootstrap'
 
  function QuestionDetails( {authedUser,
   username,
@@ -19,7 +20,6 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
   }
   ) {
 
-  //    const state = useSelector((state) => state);
     const [value, setValue]= React.useState("");
 
    const dispatch = useDispatch();
@@ -51,72 +51,81 @@ import {saveQuestionAnswer} from "../../redux/utils/helper"
     
   return <div>
       <Navegation />
-      <img  src={avatarURL} alt="avatarURL"/>  
-      
+      <img className='image-avatar-body' src={avatarURL} alt="avatarURL"/> 
+      <div className='padre-body'>
 
 {!answerId ? (
-  <form className="detail-form" onSubmit={answerQuestion}>
-    <h2> {username} asks...</h2>
-    <p>Would you rather... </p>
-    <input
-      name="answer"
-      type="radio"
-      id="optionOne"
-      value="optionOne"
-      onChange={handleChange}
-    />
-    <span> {optionOne}</span>
+  <div className='create-question'>
+        <Form className="detail-form container" onSubmit={answerQuestion}>
+          <h2> {username} asks...</h2>
+          <p>Would you rather... </p>
+          <Form.Check inline
+            name="answer"
+            type="radio"
+            id="optionOne"
+            value="optionOne"
+            onChange={handleChange}
+          />
+          <span>{optionOne}</span>
+        <span>or </span>
+          <Form.Check inline
+            name="answer"
+            type="radio"
+            id="optionTwo"
+            value="optionTwo"
+            onChange={handleChange}
+          />
+          <span>{optionTwo}</span>
 
-    <input
-      name="answer"
-      type="radio"
-      id="optionTwo"
-      value="optionTwo"
-      onChange={handleChange}
-    />
-    <span> {optionTwo}</span>
-
-    <br />
-    <br />
-    <button className="btn" type="submit">
-      Submit{" "}
-    </button>
-  </form>
+          <br />
+          <br />
+          <Button variant="secondary"  type="submit">
+            Submit{" "}
+          </Button>
+        </Form>
+        </div>
 ) : (
-  <div>
-    <h2> {username} asks...</h2>
-    <p>
+  <div className='create-qestion'>
+  <div className='container altura-result'>
+    <h2 style={{color: "blue"}}> {username} asks...</h2>
+    <div className="bg" style={{height: "80px"}} > 
+    
+    <p className='position-center-padre'>
       Would you rather {optionOne} or {optionTwo} ?{" "}
     </p>
-    <p>Results</p>
 
-    <h2> {optionOne}</h2>
-    <h2>
+   
+    </div>
+    
+    <h3 className='text-decoration'>Results:</h3>
+
+    <p className='text-cursive'> {optionOne}</p>
+    
       {"optionOne" === answerId && (
         <div>
-          <h1 style={{ color: "green" }}>This is Your vote!</h1>
+          <p style={{ color: "green" }}>This is Your vote!</p>
         </div>
       )}
       {optionOneVotes} out of {totalVotes} voted this
-    </h2>
-    <h2>That's {optionOnePercent().toString().slice(0, 5)}% </h2>
-    <br />
-    <br />
-    <br />
+    
+    <p>That's {optionOnePercent().toString().slice(0, 5)}% </p>
+    
+    <hr/>
     {"optionTwo" === answerId && (
       <div>
-        <h1 style={{ color: "green" }}>This is Your vote!</h1>
+        <p style={{ color: "green" }}>This is Your vote!</p>
       </div>
     )}
-    <h2> {optionTwo}</h2>
-    <h2>
+    <p className='text-cursive'> {optionTwo}</p>
+    <p>
       {" "}
       {optionTwoVotes} out of {totalVotes} voted this
-    </h2>
-    <h2>That's {optionTwoPercent().toString().slice(0, 5)} % </h2>
+    </p>
+    <p>That's {optionTwoPercent().toString().slice(0, 5)} % </p>
+  </div>
   </div>
 )}
-     
+  </div>
   </div>;
 }
 

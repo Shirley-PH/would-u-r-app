@@ -7,7 +7,6 @@
 }
 
 .content{
-  
   padding: 12px;
   height: 3000px;
 }
@@ -18,26 +17,118 @@
 .welcome-user{
   text-align: right;
 }
+.colorText {
+  color: white
+}
 .login{
   text-align: center;
-  
-  
   /* Center vertically and horizontally */
  position: absolute; 
-  top: 30%;
-  left: 20%;
-  
+  margin-top: 2%;
+  border-radius: 2%;
+  background-color:  #8080ff;
   
 }
-.container{
-  margin: 25px;
-  width: 350px;
-  height: 200px;
-  
-  /* Setup */
-  position: relative;
-}
+
 .card-horizontal {
   display: flex;
   flex: 1 1 auto;
+}
+/*Decoration of links */
+.positionLink :link {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.avatar{
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.image-avatar-login{
+  width: 30%;
+  margin-left: 30%;
+  display: flow-root;
+}
+.image-avatar-body{
+  width: 20%;
+  margin-left: 38%;
+  display: flow-root;
+}
+.image-avatar-leaderBoard{
+  width: 30%;
+  margin-left: 28%;
+  display: flow-root;
+}
+.w-playing{
+  text-align: center;
+}
+.listOfPoll li{
+  list-style-type: none;
+  margin-top: 12px;
+}
+/* Position of cards*/
+
+.space-between{
+  margin: 12px;
+}
+.padre{
+  height: 350px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.padre-body{
+  height: 150px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-question{
+  text-align: center;
+  margin-top: 2%;
+ position: absolute; 
+  width: 50%;
+  background-color: #e6e6e6;
+}
+
+.altura-result{
+  padding-top: 65%;
+  border-radius: 2%;
+  border-style: solid;
+  border-color: #e6e6e6;
+}
+.result-leader{
+  border-radius: 2%;
+  border-style: solid;
+  border-color: #e6e6e6;
+}
+.position-center-padre{
+  line-height: 80px;
+  }
+.bg{
+  background-color: #e6e6e6;
+}
+.text-decoration{
+  text-decoration-line: underline;
+}
+.text-cursive{
+  font-family: cursive;
+}
+/* LeaderBard elements */
+.float-container{
+  
+    padding: 5px;
+}
+.float-child{
+  width: 50%;
+  float: left;
+  padding: 10px;
+  border-left: #8080ff;
+  border-right-style: solid;
+  border-color: #e6e6e6;
 }

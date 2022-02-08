@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+
 import { handleInitialData } from './components/actions/shared-actions';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from './components/view-UI/Login' 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from "react-redux"; 
+import {Card} from 'react-bootstrap'; 
+import '../../App.css'; 
 
  function Question({username, optionOne, questionId }) {
 
@@ -8,18 +10,22 @@ import {connect} from "react-redux";
     console.log(questionId); */
 
   return <div>
-  <div>
-    <span> {username} asks:</span>
-    </div>
-    <div>
-    <div>
-      <div>Would you rather {optionOne} or...?</div>
-      <Link className="btn" to={`/question/${questionId}`}>View this poll</Link>
+  
+          <Card border="dark" style={{ width: '28rem' }} >
+          <Card.Header>{username}</Card.Header>
+          <Card.Body>
+            
+            <Card.Text>
+            Would you rather {optionOne} or...?
+            <br/>
+             <Link variant="link" to={`/question/${questionId}`}>View this poll</Link>
+            </Card.Text>
+          </Card.Body>
+        </Card>
 
-    </div>
-    </div>
     </div>;
 }
+
 
 function mapStateToProps(state, { id }) {
     const user = state.users[state.questions[id].author];

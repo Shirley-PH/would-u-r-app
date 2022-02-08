@@ -14,10 +14,10 @@ export function saveQuestion(optionOneText, optionTwoText, author){
         });
     } 
 }
-export function saveQuestionAnswer(authedUser, questionId, answerId){
+export function saveQuestionAnswer({authedUser, questionId, answerId}){
     return (dispatch) => {
         dispatch(showLoading());
-        _saveQuestionAnswer(authedUser, questionId, answerId).then((answer) => {
+        _saveQuestionAnswer({authedUser, qid: questionId, answer: answerId}).then((answer) => {
           dispatch(getAnswer(authedUser, questionId, answerId));
           dispatch(hideLoading());
         });

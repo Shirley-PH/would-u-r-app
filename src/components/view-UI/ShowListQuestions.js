@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import Question from './Question';
+import {Button} from 'react-bootstrap'; 
+import '../../App.css'; 
 
 //representa a PollTeaser
  function ShowListQuestions({answered, unanswered}) {
@@ -17,41 +19,42 @@ import Question from './Question';
       }
   return <div>
   
-  <div style= {{display:"flex"}}>
-  <button className={!isAnswered?"btn active ": "btn" }
-  onClick={setToUnAnswered}>Unanswered Questions</button>
-
-  <button className= {isAnswered?"btn active": "btn"}
-  onClick={setToAnswered}>Answered Questions</button>
+  <div className='container'>
+  <Button  className={!isAnswered?"btn active ": "btn" } variant="secondary"
+  onClick={setToUnAnswered}>Unanswered Questions</Button>{'  '}
+      
+  <Button className= {isAnswered?"btn active": "btn"} variant="secondary"
+  onClick={setToAnswered}>Answered Questions</Button>
 
 </div>
 
-<ul className="questions">
-    {isAnswered && answered.map(id=> (
-      <li key={id}>
-          <Question 
-          key={id} 
-          id={id}/>
-          <br/>
-          <br/>
+<ul className="container listOfPoll" >
 
-      </li>
-      ))
+    {isAnswered && answered.map(id=> (
       
+        <li key={id}>
+            <Question 
+            key={id} 
+            id={id}/>
+      
+        </li>
+        
+    ))
     }
 
-    {!isAnswered && unanswered.map(id=>
+    {!isAnswered && unanswered.map(id=>(
+
       <li key={id}>  
-        <Question
-        key={id}
-        id={id}
-        >
-        </Question>
-        <br/>
-        <br/>
+            <Question
+            key={id}
+            id={id} >
+            
+          </Question>
+        
       </li>
 
-    )}
+    ))
+  }
 
 
 </ul>
@@ -61,7 +64,7 @@ import Question from './Question';
 
 function mapStateToProps(state) {
     const user = state.users[state.authedUser.userId];
-       console.log(user)
+      // console.log(user)
     const answered = [...Object.keys(user.answers)]
         .sort((a, b) => state.questions[b].timestamp - state.questions[a].timestamp);
     const unanswered = [...Object.keys(state.questions)

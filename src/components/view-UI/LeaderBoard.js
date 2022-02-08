@@ -7,26 +7,31 @@ function LeaderBoard(leaderboardData) {
   <div>
   <Navegation />
   </div>
+  <div className='container'>
   {leaderboardData.leaderboardData.map((user, idx) => (
-    <div key={idx}>
+    <div key={idx} >
       
-      <p>User: {user.name}</p>
-      <h1 style ={{color: "red"}}>
+      <h2 className='text-decoration'>{user.name}</h2>
+      <h3 style ={{color: "red"}}> <span style ={{color: "black"}}>Status: </span>
       {idx === 0 ? 
       "WINNER!":
       "LOSER!"}
-      </h1>
-
-      <img src={user.avatarURL} alt = ""/>
-      <p> Questions Answered: {user.answerCount} </p>
-      <p> Questions Created: {user.questionCount}</p>
-      <p>Total: {user.total}</p>
-      <br/>
-      <br/>
-      <br/>
-
+      </h3>
+      <div className='float-container'>
+        <div className='float-child'> 
+        <img className='image-avatar-leaderBoard' src={user.avatarURL} alt = "avatar-user"/>
+        </div>
+        <div className='float-child'>
+        <p> Questions Answered: {user.answerCount} </p>
+        <p> Questions Created: {user.questionCount}</p>
+        <p>Total: {user.total}</p>
+        </div>
+      </div>
+      
     </div>
+    
   ))}
+  </div>
   </div>;
 }
 

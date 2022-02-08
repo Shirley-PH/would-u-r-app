@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL:'https://bit.ly/35U1fKs',
+    avatarURL:'https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurvy&accessoriesType=Wayfarers&hairColor=Blonde&facialHairType=Blank&facialHairColor=Blonde&clotheType=Hoodie&clotheColor=PastelYellow&eyeType=Wink&eyebrowType=UpDown&mouthType=Twinkle&skinColor=Tanned',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -15,7 +15,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://bit.ly/35U1fKs',
+    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Prescription01&hairColor=BrownDark&facialHairType=MoustacheMagnum&facialHairColor=BlondeGolden&clotheType=ShirtScoopNeck&clotheColor=Pink&graphicType=Selena&eyeType=EyeRoll&eyebrowType=FlatNatural&mouthType=Sad&skinColor=DarkBrown',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -25,7 +25,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://bit.ly/35U1fKs',
+    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=NoHair&accessoriesType=Kurt&hairColor=Platinum&facialHairType=BeardLight&facialHairColor=Brown&clotheType=ShirtCrewNeck&clotheColor=PastelOrange&eyeType=Cry&eyebrowType=AngryNatural&mouthType=Twinkle&skinColor=Brown',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

@@ -4,6 +4,8 @@ import { saveQuestion } from '../../redux/utils/helper';
 import { connect } from 'react-redux';
 import Navegation from './Navegation';
 import {Redirect} from 'react-router-dom'
+import {Form, Button} from 'react-bootstrap'; 
+import '../../App.css'; 
 
 //Igual a NEWPOLL
  function CreateNewQuestion({authedUser}) {
@@ -38,32 +40,37 @@ import {Redirect} from 'react-router-dom'
   }
 
   return(
-      <div> 
+      <div>  
           <Navegation/>
-      
-          <h1>Create your own poll!</h1>
-          <h1>Would you rather... </h1>
-          
-          <form onSubmit = {addQuestion}>
-          <p> Enter your option 1</p>
-          <input type= "text"
-          onChange = {handleOptionOneChange}
-          />
-          <h1> or </h1>
-          <p> Enter your option 2 </p>
-          <input type= "text"
-          onChange= {handleOptionTwoChange}
-          />
-          <br/>
-          <br/>
-          <button onClick= {addQuestion}> Submit </button>
-          </form>
+          <div className='container padre'>
+            <div className='create-question '>
+            <h3>Create your own question!</h3>
+            <h4>Would you rather... </h4>
+
+                <Form onSubmit={addQuestion} >
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label> Write your option 1</Form.Label>
+                        <Form.Control type="text" onChange = {handleOptionOneChange} placeholder="Write here..." />
+                        
+                    </Form.Group>
+                        <span>Or </span>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Write your option 2</Form.Label>
+                        <Form.Control type="text" onChange={handleOptionTwoChange} placeholder="Write here..." />
+                    </Form.Group>
+                    
+                    <Button variant="primary" onClick={addQuestion} type="submit">
+                        Submit
+                    </Button>
+                </Form>
+                </div>
+        </div>
       </div>
   ) 
 }
 
 function mapStateToProps(state) {
-    console.log('?que es el state en createNewQuestion: ', state); 
+    //console.log('?que es el state en createNewQuestion: ', state); 
 
   return {
       authedUser: state.authedUser.userId,
