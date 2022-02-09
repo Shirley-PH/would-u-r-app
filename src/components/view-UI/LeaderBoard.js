@@ -3,10 +3,19 @@ import { connect } from 'react-redux';
 import Navegation from './Navegation';
 
 function LeaderBoard(leaderboardData) {
+
+  /* Object.values({users}) returns an array of User values ​​that connect to the Store and the mapStateToProps function
+  connects with the elements of an array that is extracted from users,
+  and this last function returns only the const leaderboardData.
+  We call 2x leaderboardData.map() to locate the Object.values() with declared values ​​that already exist
+   in the users store(from mapStateProps) in UX.
+ 
+  */
   return <div>
   <div>
   <Navegation />
   </div>
+
   <div className='container'>
   {leaderboardData.leaderboardData.map((user, idx) => (
     <div key={idx} >
@@ -24,8 +33,11 @@ function LeaderBoard(leaderboardData) {
         <div className='float-child'>
         <p> Questions Answered: {user.answerCount} </p>
         <p> Questions Created: {user.questionCount}</p>
+        </div>
+        <div className='float-child'>
         <p>Total: {user.total}</p>
         </div>
+        
       </div>
       
     </div>
@@ -49,8 +61,6 @@ function mapStateToProps({users}){
     }))
     .sort((a, b) => a.total - b.total)
     .reverse()
-    
-
 
   return { leaderboardData };
 }

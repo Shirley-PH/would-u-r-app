@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import {connect, useDispatch} from "react-redux"
 import Navegation from './Navegation';
 import NotFound from './NotFound';
@@ -20,7 +21,7 @@ import {Form, Button} from 'react-bootstrap'
   }
   ) {
 
-    const [value, setValue]= React.useState("");
+    const [value, setValue]= useState("");
 
    const dispatch = useDispatch();
 
@@ -31,9 +32,10 @@ import {Form, Button} from 'react-bootstrap'
     const answerQuestion = (event) => {
       event.preventDefault();
       const answerId = value;
-  
+
+      /* saveQUestionAnswer connect to the Redux function through Dispatch */
       dispatch(saveQuestionAnswer({ authedUser, questionId, answerId }));
-      console.log('question ID ',questionId )
+      //console.log('question ID ',questionId )
     };
   
     const optionOnePercent = () => {
@@ -80,7 +82,7 @@ import {Form, Button} from 'react-bootstrap'
           <br />
           <br />
           <Button variant="secondary"  type="submit">
-            Submit{" "}
+            Submit
           </Button>
         </Form>
         </div>
@@ -88,15 +90,12 @@ import {Form, Button} from 'react-bootstrap'
   <div className='create-qestion'>
   <div className='container altura-result'>
     <h2 style={{color: "blue"}}> {username} asks...</h2>
-    <div className="bg" style={{height: "80px"}} > 
-    
-    <p className='position-center-padre'>
-      Would you rather {optionOne} or {optionTwo} ?{" "}
-    </p>
 
-   
-    </div>
-    
+      <div className="bg" style={{height: "80px"}} > 
+      <p className='position-center-padre'>
+        Would you rather {optionOne} or {optionTwo} ?{" "}
+      </p>
+      </div>
     <h3 className='text-decoration'>Results:</h3>
 
     <p className='text-cursive'> {optionOne}</p>
@@ -141,20 +140,7 @@ function mapStateToProps(state, { id }) {
   const user = state.users[state.questions[id].author];
   const authUser = state.authedUser.userId;
   const question = state.questions[id];
-   const answerIdd=  state.users[authUser].answers; 
-
-   console.log('answerIdd ')
-  console.log(answerIdd)
-  console.log('state ')
-  console.log(state)
-   console.log('user name')
-  console.log(user.name)
-  console.log('authUser')
-  console.log(authUser)
-  console.log('question')
-  console.log(question)
- console.log('este valor es user.avatar ', user.avatarURL); 
-  
+ 
 
   return {
     username: user.name,

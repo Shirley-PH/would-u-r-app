@@ -1,5 +1,7 @@
 import { GET_USER, GET_ANSWER, GET_QUESTION } from "../constants";
 
+/* All the conditionals that are related to Users and the actions it does such as identifying the user (GET_USER), 
+the question (GET_QUESTION) and the answer it makes (GET_ANSWER) */
 export default function usersR(state={}, action){
     
     switch(action.type){

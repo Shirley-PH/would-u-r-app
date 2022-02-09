@@ -18,10 +18,13 @@ function App() {
   const dispatch= useDispatch();
 
       useEffect(()=> {
-        dispatch(handleInitialData()); // Esto representa ala getInitialData
+        dispatch(handleInitialData()); //function that makes the call to the _DATA and updates the information with the dispatch
       }, [dispatch]
       );
-
+      
+      /* 
+      useSelect allows you to extract the REDUX data using this function
+      */
   const authUser = useSelector((state) => state.authedUser)
       
   return (
@@ -31,16 +34,16 @@ function App() {
             <Route path="/" component={Login}/>: null
           }*/}
           <Route exact path="/" render={() => <Login />} />
-        <Route exact path="/add" 
+          <Route exact path="/add" 
       render={() => (authUser && authUser.userId ? <CreateNewQuestion /> : <Login />) } />
-        <Route exact path="/404" 
+          <Route exact path="/404" 
         render ={() => (authUser && authUser.userId ? <NotFound /> : <Login />) } />
-        <Route exact path="/leaderboard" 
+          <Route exact path="/leaderboard" 
         render={() => (authUser && authUser.userId ? <LeaderBoard/> : <Login/>)} />
 
-      <Route path="/home/" render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />         
+        <Route path="/home/" render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />         
 
-       <Route
+        <Route
        path="/question/:id"
       render={({ match }) => {
         

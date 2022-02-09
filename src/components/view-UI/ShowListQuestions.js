@@ -5,7 +5,7 @@ import Question from './Question';
 import {Button} from 'react-bootstrap'; 
 import '../../App.css'; 
 
-//representa a PollTeaser
+
  function ShowListQuestions({answered, unanswered}) {
 
     const [isAnswered, setIsAnswered] = useState(false);
@@ -29,7 +29,6 @@ import '../../App.css';
 </div>
 
 <ul className="container listOfPoll" >
-
     {isAnswered && answered.map(id=> (
       
         <li key={id}>
@@ -41,7 +40,6 @@ import '../../App.css';
         
     ))
     }
-
     {!isAnswered && unanswered.map(id=>(
 
       <li key={id}>  
@@ -56,9 +54,7 @@ import '../../App.css';
     ))
   }
 
-
 </ul>
-
   </div>;
 }
 

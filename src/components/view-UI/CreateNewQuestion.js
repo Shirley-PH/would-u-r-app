@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { saveQuestion } from '../../redux/utils/helper';
 import { connect } from 'react-redux';
@@ -7,13 +8,13 @@ import {Redirect} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap'; 
 import '../../App.css'; 
 
-//Igual a NEWPOLL
+
  function CreateNewQuestion({authedUser}) {
   
    // console.log('this is authed.authed.userId', authedUser.authedUser.userId); 
-  const [optionOneText, setOptionOneText] = React.useState("")
-  const [optionTwoText, setOptionTwoText] = React.useState("")
-  const [toHome, setHome]= React.useState(false)
+  const [optionOneText, setOptionOneText] = useState("")
+  const [optionTwoText, setOptionTwoText] = useState("")
+  const [toHome, setHome]= useState(false)
   
   const handleOptionOneChange = (event) => {
       setOptionOneText(event.target.value)
@@ -46,7 +47,6 @@ import '../../App.css';
             <div className='create-question '>
             <h3>Create your own question!</h3>
             <h4>Would you rather... </h4>
-
                 <Form onSubmit={addQuestion} >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label> Write your option 1</Form.Label>
@@ -59,7 +59,7 @@ import '../../App.css';
                         <Form.Control type="text" onChange={handleOptionTwoChange} placeholder="Write here..." />
                     </Form.Group>
                     
-                    <Button variant="primary" onClick={addQuestion} type="submit">
+                    <Button variant="primary"  type="submit">
                         Submit
                     </Button>
                 </Form>

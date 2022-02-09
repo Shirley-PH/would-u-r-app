@@ -1,4 +1,4 @@
-import {createStore, combineReducers} from "react-redux"
+import {createStore} from "react-redux"
 import { combineReducers} from "../reducers/index"
 
 const store= createStore(combineReducers,

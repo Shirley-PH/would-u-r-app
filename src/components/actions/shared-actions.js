@@ -3,9 +3,9 @@ import { getUser } from "./users";
 import { getQuestions } from "./questions";
 import { showLoading, hideLoading } from "react-redux-loading";
 
-/* Tras hacer la llamada a la API tenemos que crear las funciones relacionadas con las
-acciones que hace tanto USER como QUESTION
-Después de relacionarlas con acciones.type, devolvemos al dispatch
+/* After making the call to the API we have to create the functions related to the
+actions that both USER and QUESTION do
+After relating them to actions.type, we return to the dispatch
 */
 
 export function handleInitialData(){

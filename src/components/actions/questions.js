@@ -1,5 +1,8 @@
 import {GET_ANSWER, GET_QUESTION, GET_QUESTIONS } from '../../redux/constants'
 
+
+/* These functions correspond to Question and will connect to Redux after the API call*/
+
 export function getQuestions(questions){
     return{
         type: GET_QUESTIONS,
@@ -7,7 +10,7 @@ export function getQuestions(questions){
     }
 }
 
-/* esta parte va con ACTION => SHARED */
+
 export function getQuestion(question){
     return{
         type: GET_QUESTION,
