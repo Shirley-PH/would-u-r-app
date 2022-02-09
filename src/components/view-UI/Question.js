@@ -18,7 +18,7 @@ import '../../App.css';
             <Card.Text>
             Would you rather {optionOne} or...?
             <br/>
-             <Link variant="link" to={`/question/${questionId}`}>View this poll</Link>
+             <Link variant="link" to={`/questions/${questionId}`}>View this poll</Link>
             </Card.Text>
           </Card.Body>
         </Card>

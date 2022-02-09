@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Would you rather game Udacity
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application allows you to create your own questions that make you think and start with 'Would you rather... or ...' And other users can vote for their favorite option. The Initial information comes from an API. The questions are displayed in two blocks, answered and unanswered questions. And you can answer questions from other users.
 
-## Available Scripts
+This is a second project required for the Udicty React Nanoprogram.
 
-In the project directory, you can run:
+## How to install it:
+```
+git clone https://github.com/Shirley-PH/would-u-r-app
+git cd would-you-rather-game-udacity
 
-### `npm start`
+npm install 
 
-Runs the app in the development mode.\
+or 
+
+yarn install
+```
+
+## How to run it:
+ ```
+ npm start
+ 
+ or
+
+yarn start
+ ```
+
+## How to view it in your browser
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## DATA 
+There are two types of objects stored in our database:
 
-### `npm test`
+* Users
+* Questions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Users
 
-### `npm run build`
+Users include:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Attribute    | Type             | Description           |
+|-----------------|------------------|-------------------         |
+| id                 | String           | The user’s unique identifier |
+| name          | String           | The user’s first name  and last name     |
+| avatarURL  | String           | The path to the image file |
+| questions | Array | A list of ids of the polling questions this user created|
+| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Questions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Questions include:
 
-### `npm run eject`
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id                  | String | The question’s unique identifier |
+| author        | String | The author’s unique identifier |
+| timestamp | String | The time when the question was created|
+| optionOne | Object | The first voting option|
+| optionTwo | Object | The second voting option|
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Voting Options
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Voting options are attached to questions. They include:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| votes             | Array | A list that contains the id of each user who voted for that option|
+| text                | String | The text of the option |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Your code will talk to the database via 4 methods:
 
-## Learn More
+* `_getUsers()`
+* `_getQuestions()`
+* `_saveQuestion(question)`
+* `_saveQuestionAnswer(object)`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1) `_getUsers()` Method
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*Description*: Get all of the existing users from the database.  
+*Return Value*: Object where the key is the user’s id and the value is the user object.
 
-### Code Splitting
+2) `_getQuestions()` Method
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+*Description*: Get all of the existing questions from the database.  
+*Return Value*: Object where the key is the question’s id and the value is the question object.
 
-### Analyzing the Bundle Size
+3) `_saveQuestion(question)` Method
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+*Description*: Save the polling question in the database.  
+*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
 
-### Making a Progressive Web App
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| author | String | The id of the user who posted the question|
+| optionOneText| String | The text of the first option |
+| optionTwoText | String | The text of the second option |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
 
-### Advanced Configuration
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id | String | The id of the question that was posted|
+| author | String | The id of the user who posted the question|
+| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+|timestamp|String | The time when the question was created|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4) `_saveQuestionAnswer(object)` Method
 
-### Deployment
+*Description*: Save the answer to a particular polling question in the database.
+*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| authedUser | String | The id of the user who answered the question|
+| qid | String | The id of the question that was answered|
+| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
-### `npm run build` fails to minify
+## Helpful people
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [@James Priest](https://github.com/james-priest/reactnd-project-would-you-rather)
+- [@Edwdeapri](https://github.com/edwdeapri/udacity-would-you-rather)

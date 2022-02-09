@@ -44,7 +44,7 @@ function App() {
         <Route path="/home/" render={() => (authUser && authUser.userId ? <DashBoard /> : <Login />)}  />         
 
         <Route
-       path="/question/:id"
+       path="/questions/:id"
       render={({ match }) => {
         
         return authUser && authUser.userId ? (
